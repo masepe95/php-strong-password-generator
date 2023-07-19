@@ -16,15 +16,15 @@ function generatePassword($lenght)
 
         if ($charType === 1) {
 
-            $takeSpecialchar = rand(0, 17);
+            $takeSpecialchar = rand(0, (count($specialArray) - 1));
             array_push($newPassword, $specialArray[$takeSpecialchar]);
         } elseif ($charType === 2) {
 
-            $takeChar = rand(0, 23);
+            $takeChar = rand(0, (count($charArray) - 1));
             array_push($newPassword, $charArray[$takeChar]);
         } elseif ($charType === 3) {
 
-            $takeNumber = rand(0, 9);
+            $takeNumber = rand(0, (count($numArray) - 1));
             array_push($newPassword, $numArray[$takeNumber]);
         }
     }
