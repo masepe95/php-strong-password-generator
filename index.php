@@ -1,44 +1,5 @@
 <?php
-$lenghtValue = $_GET['lenght-input'];
-var_dump($lenghtValue);
-
-
-function generatePassword($lenght)
-{
-    $specialArray = ['!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '_', '-', '!', '=', '?', ':', '.', ';'];
-    $charArray = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'k', 'h', 'i', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'x', 'y', 'z'];
-    $numArray = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'];
-    $newPassword = [];
-
-    for ($i = 0; $i < $lenght; $i++) {
-
-        $charType = rand(1, 3);
-
-        if ($charType === 1) {
-
-            $takeSpecialchar = rand(0, (count($specialArray) - 1));
-            array_push($newPassword, $specialArray[$takeSpecialchar]);
-        } elseif ($charType === 2) {
-
-            $takeChar = rand(0, (count($charArray) - 1));
-            array_push($newPassword, $charArray[$takeChar]);
-        } elseif ($charType === 3) {
-
-            $takeNumber = rand(0, (count($numArray) - 1));
-            array_push($newPassword, $numArray[$takeNumber]);
-        }
-    }
-
-    return implode($newPassword);
-};
-
-
-$newPassword = generatePassword($lenghtValue);
-
-
-?>
-
-
+include_once './functions.php';
 ?>
 
 <!DOCTYPE html>
@@ -60,20 +21,20 @@ $newPassword = generatePassword($lenghtValue);
             <label for="length-input">
                 Lunghezza Password:
             </label>
-            <input type="number" name="lenght-input" id="lenght-input">
+            <input type="number" name="length-input" id="length-input">
             <button type="submit">
                 Invia
             </button>
         </form>
     </div>
-    <?php if ((($_GET['lenght-input']) > 0) && (($_GET['lenght-input']) != null)) { ?>
+    <?php if ((($_GET['length-input']) > 0) && (($_GET['length-input']) != null)) { ?>
         <div class="bg-info w-50 mx-auto mt-5 p-5">
             <h2>
                 La tua password generata è:
             </h2>
             <p class="fs-2 text-success">
                 <?php
-                echo $newPassword;
+                header('Location: ./showPassword.php');
                 ?>
             </p>
         </div>
